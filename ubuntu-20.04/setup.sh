@@ -36,6 +36,7 @@ sudo apt-get update && sudo apt-get install spotify-client
 # Install AWS SAM
 bash -x install-aws-sam.sh
 # Install rbenv
+sudo apt install -y libssl-dev zlib1g-dev
 bash -x  install-rbenv.sh
 # open setup site
 open https://www.st1t.com/entry/2019/04/29/132026  
