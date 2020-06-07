@@ -2,7 +2,9 @@
 
 # install package
 sudo apt update
-sudo apt install -y gnome-tweak-tool screen
+sudo apt install -y gnome-tweak-tool \
+  screen \
+  jq
 
 # mkdir to install jetbrains commands
 mkdir ~/bin
