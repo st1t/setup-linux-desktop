@@ -9,6 +9,9 @@ sudo apt install -y gnome-tweak-tool \
 # mkdir to install jetbrains commands
 mkdir ~/bin
 
+# Change editor from nano to vim
+sudo update-alternatives --set editor /usr/bin/vim.basic
+
 # change key from capslock to ctrl
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
