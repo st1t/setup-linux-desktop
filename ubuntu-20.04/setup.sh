@@ -27,6 +27,11 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install
 rm -rf aws awscliv2.zip
+# Install Spotify
+## https://www.spotify.com/jp/download/linux/
+curl -sS https://download.spotify.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update && sudo apt-get install spotify-client
 # open setup site
 open https://www.st1t.com/entry/2019/04/29/132026  
 open https://www.jetbrains.com/ja-jp/toolbox-app/
