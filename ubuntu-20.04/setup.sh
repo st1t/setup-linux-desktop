@@ -35,6 +35,10 @@ echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sou
 sudo apt-get update && sudo apt-get install spotify-client
 # Install AWS SAM
 bash -x install-aws-sam.sh
+# Install rbenv
+bash -x  install-rbenv.sh
 # open setup site
 open https://www.st1t.com/entry/2019/04/29/132026  
 open https://www.jetbrains.com/ja-jp/toolbox-app/
+# Print message
+echo 'Please reboot'
