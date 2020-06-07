@@ -1,0 +1,5 @@
+[/]
+move-to-workspace-down=['<Shift><Super>k']
+move-to-workspace-up=['<Shift><Super>j']
+switch-to-workspace-down=['<Super>k']
+switch-to-workspace-up=['<Super>j']

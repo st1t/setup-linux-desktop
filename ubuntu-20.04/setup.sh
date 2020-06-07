@@ -16,6 +16,9 @@ ln -s /usr/bin/xdg-open /bin/open
 # import terminal profile
 open https://unix.stackexchange.com/questions/448811/how-to-export-a-gnome-terminal-profile
 dconf load /org/gnome/terminal/legacy/profiles:/ < gnome-terminal-profiles.dconf
+# import keyboard bindings
+open https://askubuntu.com/questions/682513/how-to-backup-restore-system-custom-keyboard-shortcuts
+dconf load /org/gnome/desktop/wm/keybindings/ < keybindings.dconf
 # setup Docker
 open https://docs.docker.com/engine/install/ubuntu/
 sudo bash -x ./install-docker.sh
