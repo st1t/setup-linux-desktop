@@ -22,6 +22,11 @@ dconf load /org/gnome/desktop/wm/keybindings/ < keybindings.dconf
 # setup Docker
 open https://docs.docker.com/engine/install/ubuntu/
 sudo bash -x ./install-docker.sh
+# Install awscli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+rm -rf aws awscliv2.zip
 # open setup site
 open https://www.st1t.com/entry/2019/04/29/132026  
 open https://www.jetbrains.com/ja-jp/toolbox-app/
