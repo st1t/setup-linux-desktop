@@ -60,6 +60,9 @@ bash -x  install-rbenv.sh
 # Install pyenv
 bash -x install-pyenv.sh
 
+# Install envchain
+bash -x install-envchain.sh
+
 # open setup site
 open https://www.st1t.com/entry/2019/04/29/132026  
 open https://www.jetbrains.com/ja-jp/toolbox-app/
