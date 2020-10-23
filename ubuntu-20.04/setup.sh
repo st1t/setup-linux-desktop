@@ -15,6 +15,9 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 # change key from capslock to ctrl
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
+# Change key repeat https://qiita.com/hidetzu/items/75011200411274aaedfd
+xset r rate 195 62
+
 # copy screenrc
 cp ../common/.screenrc ~/
 echo "alias ls='ls --color'" >> ~.bash_profile
