@@ -16,7 +16,7 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 
 # Change key repeat https://qiita.com/hidetzu/items/75011200411274aaedfd
-xset r rate 195 62
+echo "xset r rate 195 62" >> ~/.xinitrc
 
 # copy screenrc
 cp ../common/.screenrc ~/
