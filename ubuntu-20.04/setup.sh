@@ -18,6 +18,9 @@ gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
 # Change key repeat https://qiita.com/hidetzu/items/75011200411274aaedfd
 echo "xset r rate 195 62" >> ~/.xinitrc
 
+# Disable Win Key https://askubuntu.com/questions/93746/how-can-i-disable-the-windows-key-from-opening-the-activities-overview
+gsettings set org.gnome.mutter overlay-key ''
+
 # copy screenrc
 cp ../common/.screenrc ~/
 echo "alias ls='ls --color'" >> ~.bash_profile
