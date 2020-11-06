@@ -11,3 +11,8 @@ $ bash -x ./setup.sh
 
 - Disable beep
     - Terminal > 設定 > プロファイル > 文字 > 端末ベルを鳴らす
+- ThinkpadにHDMIケーブルを挿しっぱなしだと起動しない問題(https://nonsensej.xyz/articles/2020/06/01/ubuntu-20-04-hdmi)
+    ```
+    sudo gedit /etc/default/grub
+    sudo update-grub
+    ```
