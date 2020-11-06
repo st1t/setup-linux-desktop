@@ -25,6 +25,9 @@ echo "alias ls='ls --color'" >> ~.bash_profile
 # copy vimrc
 cp ../common/.vimrc ~/
 
+# https://intellij-support.jetbrains.com/hc/en-us/community/posts/205806309-How-to-disable-completely-audible-beeps-
+ln -s ~/.vimrc ~/.ideavimrc
+
 # add symboliclink
 ln -s /usr/bin/xdg-open /bin/open
 
