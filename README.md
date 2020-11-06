@@ -16,3 +16,4 @@ $ bash -x ./setup.sh
     sudo gedit /etc/default/grub
     sudo update-grub
     ```
+- key repeat delay調整(https://askubuntu.com/questions/846030/how-to-set-keyboard-repeat-delay-and-speed-in-ubuntu-gnome-16-10)
