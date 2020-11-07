@@ -25,6 +25,9 @@ gsettings set org.gnome.mutter overlay-key ''
 cp ../common/.screenrc ~/
 echo "alias ls='ls --color'" >> ~.bash_profile
 
+# Change ls color https://www.itmedia.co.jp/help/tips/linux/l0372.html
+exho "export LS_COLORS='di=01;36'" >> ~.bash_profile
+
 # copy vimrc
 cp ../common/.vimrc ~/
 
