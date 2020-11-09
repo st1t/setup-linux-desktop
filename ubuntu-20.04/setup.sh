@@ -75,6 +75,10 @@ bash -x install-pyenv.sh
 # Install envchain
 bash -x install-envchain.sh
 
+# Setup natural scrolling
+diff ./40-libinput.conf /usr/share/X11/xorg.conf.d/40-libinput.conf
+sudo cp ./40-libinput.conf /usr/share/X11/xorg.conf.d/40-libinput.conf
+
 # open setup site
 open https://www.st1t.com/entry/2019/04/29/132026  
 open https://www.jetbrains.com/ja-jp/toolbox-app/
