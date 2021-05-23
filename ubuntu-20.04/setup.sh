@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Change home directory language from Japanese to English
+LANG=C xdg-user-dirs-gtk-update
+
 # install package
 sudo apt update
 sudo apt install -y gnome-tweak-tool \
