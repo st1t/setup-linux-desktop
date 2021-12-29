@@ -4,6 +4,7 @@
 ```
 $ git clone git@github.com:st1t/setup-linux-desktop.git
 $ cd setup-linux-desktop/
+$ vim inventory_hosts.yml
 $ vim my_pc.yml
 $ ansible-playbook -i inventory_hosts.yml my_pc.yml
 ```
