@@ -1,0 +1,52 @@
+---
+# tasks file for rbenv https://github.com/rbenv/ruby-build/wiki#suggested-build-environment
+- name: RegistIsRbenv
+  shell: bash -lc "which rbenv"
+  ignore_errors: True
+  register: is_rbenv
+  tags: rbenv
+
+- name: Install Rbenv
+  block:
+    - name: Install packages
+      apt:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - autoconf
+        - bison
+        - git
+        - build-essential
+        - libssl-dev
+        - libyaml-dev
+        - libreadline6-dev
+        - zlib1g-dev
+        - libncurses5-dev
+        - libffi-dev
+        - libgdbm6
+        - libgdbm-dev
+        - libdb-dev
+
+    - name: Git clone rbenv
+      ansible.builtin.git:
+        repo: 'https://github.com/rbenv/rbenv.git'
+        dest: '{{ ansible_user_dir }}/.rbenv'
+
+    # https://github.com/rbenv/ruby-build#installation
+    - name: Make directory
+      ansible.builtin.file:
+        path: '{{ ansible_user_dir }}/.rbenv/plugins'
+        state: directory
+
+    - name: Git clone ruby-build
+      ansible.builtin.git:
+        repo: 'https://github.com/rbenv/ruby-build.git'
+        dest: '{{ ansible_user_dir }}/.rbenv/plugins/ruby-build'
+
+    - name: Copy .bash_profile
+      ansible.builtin.copy:
+        src: .bash_profile
+        dest: '{{ ansible_user_dir }}/.bash_profile.d/rbenv'
+  tags: rbenv
+  when: is_rbenv.rc == 1
+  become: True

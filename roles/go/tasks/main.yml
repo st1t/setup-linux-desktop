@@ -1,0 +1,29 @@
+---
+# tasks file for go https://go.dev/doc/install
+- name: RegistIsGo
+  ansible.builtin.stat:
+    path: /usr/local/go
+  ignore_errors: True
+  register: is_go
+  tags: go
+
+- name: Install Go
+  block:
+    - name: Download go
+      get_url:
+        url: https://go.dev/dl/go{{ go_version }}.linux-amd64.tar.gz
+        dest: /tmp/go{{ go_version }}.linux-amd64.tar.gz
+
+    - name: Extract go.tar.gz
+      ansible.builtin.unarchive:
+        src: /tmp/go{{ go_version }}.linux-amd64.tar.gz
+        dest: /usr/local
+        remote_src: yes
+
+    - name: Copy .bash_profile
+      ansible.builtin.copy:
+        src: .bash_profile
+        dest: '{{ ansible_user_dir }}/.bash_profile.d/go'
+  tags: go
+  when: is_go.stat.isdir == False
+  become: True

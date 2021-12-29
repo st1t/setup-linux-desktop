@@ -1,0 +1,41 @@
+---
+# tasks file for aws-sam-cli https://docs.aws.amazon.com/ja_jp/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html
+- name: RegistIsSam
+  shell: bash -lc "which sam"
+  ignore_errors: True
+  register: is_sam
+
+- name: Install aws-sam-cli
+  block:
+    - name: RegistIsSamZip
+      ansible.builtin.stat:
+        path: /tmp/aws-sam-cli-linux-x86_64.zip
+      ignore_errors: True
+      register: is_sam_zip
+
+    - name: Download aws-sam-cli
+      get_url:
+        url: https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
+        dest: /tmp
+      when: is_sam_zip.stat.isreg == False
+
+    - name: Install unzip command
+      apt:
+        name: unzip
+        state: present
+
+    - name: Make directory
+      ansible.builtin.file:
+        path: /tmp/sam-installation
+        state: directory
+
+    - name: Extract aws-sam-cli
+      ansible.builtin.unarchive:
+        src: /tmp/aws-sam-cli-linux-x86_64.zip
+        dest: /tmp/sam-installation
+        remote_src: yes
+
+    - name: Execute install command
+      shell: /tmp/sam-installation/install
+  when: is_sam.rc == 1
+  become: True

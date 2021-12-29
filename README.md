@@ -3,8 +3,9 @@
 
 ```
 $ git clone git@github.com:st1t/setup-linux-desktop.git
-$ cd setup-linux-desktop/ubuntu-20.04/
-$ bash -x ./setup.sh
+$ cd setup-linux-desktop/
+$ vim my_pc.yml
+$ ansible-playbook -i inventory_hosts.yml my_pc.yml
 ```
 
 ## Memo

@@ -1,0 +1,29 @@
+---
+# tasks file for envchain https://github.com/sorah/envchain#installation
+- name: RegistIsEnvchain
+  shell: bash -lc "which envchain"
+  ignore_errors: True
+  register: is_envchain
+  tags: envchain
+
+- name: Install Envchain
+  block:
+    - name: Git clone envchain
+      ansible.builtin.git:
+        repo: 'https://github.com/sorah/envchain.git'
+        dest: '/tmp/envchain'
+
+    - name: Install packages
+      apt:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - libsecret-1-dev
+
+    - name: Build the default target
+      make:
+        chdir: /tmp/envchain
+        target: install
+  tags: envchain
+  when: is_envchain.rc == 1
+  become: True
