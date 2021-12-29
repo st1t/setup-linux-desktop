@@ -1,0 +1,6 @@
+---
+my_pc:
+  hosts:
+    t490:
+      ansible_host: 192.168.10.117
+      ansible_user: st1t

@@ -1,0 +1,17 @@
+---
+# tasks file for ruby https://github.com/ruby/ruby-build/wiki#suggested-build-environment
+- name: RegistIsRuby
+  shell: bash -lc "ruby --version | grep {{ ruby_version }}"
+  ignore_errors: True
+  register: is_ruby
+  tags: ruby
+
+- name: Install Ruby
+  block:
+    - name: Install Ruby using rbenv
+      shell: bash -lc "rbenv install {{ ruby_version }}"
+
+    - name: Set ruby version
+      shell: bash -lc "rbenv global {{ ruby_version }}"
+  tags: ruby
+  when: is_ruby.rc == 1

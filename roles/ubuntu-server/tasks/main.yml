@@ -1,0 +1,39 @@
+---
+# tasks file for ubuntu-server
+- name: Install ubuntu-server
+  block:
+    - name: Install packages
+      apt:
+        name: '{{ item }}'
+        update_cache: yes
+        state: present
+      with_items:
+        - jq
+        - vim
+        - screen
+      become: True
+
+    - name: Modify alternative editor
+      alternatives:
+        name: editor
+        path: /usr/bin/vim.basic
+      become: True
+
+    - name: Modify keymap from Caps to Ctrl
+      command: gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
+      become: True
+
+    - name: Make directory
+      ansible.builtin.file:
+        path: '{{ ansible_user_dir }}/.bash_profile.d'
+        state: directory
+
+    - name: Copy files
+      ansible.builtin.copy:
+        src: '{{ item.src }}'
+        dest: '{{ item.dest }}'
+      loop:
+        - { src: .bash_profile, dest: '/home/{{ ansible_user }}/.bash_profile' }
+        - { src: .screenrc, dest: '/home/{{ ansible_user }}/.screenrc' }
+        - { src: .vimrc, dest: '/home/{{ ansible_user }}/.vimrc' }
+  tags: ubuntu-server

@@ -1,0 +1,11 @@
+---
+- hosts: my_pc
+  roles:
+    - ubuntu-server
+    - go
+    - docker
+    - aws-sam-cli
+    - rbenv
+    - ruby
+    - pyenv
+    - envchain
