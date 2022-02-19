@@ -26,6 +26,7 @@
         - libgdbm6
         - libgdbm-dev
         - libdb-dev
+      become: True
 
     - name: Git clone rbenv
       ansible.builtin.git:
@@ -49,4 +50,3 @@
         dest: '{{ ansible_user_dir }}/.bash_profile.d/rbenv'
   tags: rbenv
   when: is_rbenv.rc == 1
-  become: True

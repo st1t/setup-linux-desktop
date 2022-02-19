@@ -19,4 +19,3 @@
         dest: '{{ ansible_user_dir }}/.bash_profile.d/pyenv'
   tags: pyenv
   when: is_pyenv.rc == 1
-  become: True

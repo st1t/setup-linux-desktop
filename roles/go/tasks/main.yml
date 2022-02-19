@@ -19,11 +19,11 @@
         src: /tmp/go{{ go_version }}.linux-amd64.tar.gz
         dest: /usr/local
         remote_src: yes
+      become: True
 
     - name: Copy .bash_profile
       ansible.builtin.copy:
         src: .bash_profile
         dest: '{{ ansible_user_dir }}/.bash_profile.d/go'
   tags: go
-  when: is_go.stat.isdir == False
-  become: True
+  when: is_go.stat.isdir is not defined
