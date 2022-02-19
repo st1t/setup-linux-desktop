@@ -25,5 +25,10 @@
       ansible.builtin.copy:
         src: .bash_profile
         dest: '{{ ansible_user_dir }}/.bash_profile.d/go'
+
+    - name: Remove go.tar.gz
+      ansible.builtin.file:
+        path: /tmp/go{{ go_version }}.linux-amd64.tar.gz
+        state: absent
   tags: go
   when: is_go.stat.isdir is not defined

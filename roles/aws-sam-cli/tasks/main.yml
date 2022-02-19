@@ -4,6 +4,7 @@
   shell: bash -lc "which sam"
   ignore_errors: True
   register: is_sam
+  tags: sam
 
 - name: Install aws-sam-cli
   block:
@@ -17,7 +18,7 @@
       get_url:
         url: https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip
         dest: /tmp
-      when: is_sam_zip.stat.isreg == False
+      when: is_sam_zip.stat.isreg is not defined
 
     - name: Install unzip command
       apt:
@@ -37,5 +38,14 @@
 
     - name: Execute install command
       shell: /tmp/sam-installation/install
+
+    - name: Remove go.tar.gz
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: absent
+      with_items:
+        - /tmp/aws-sam-cli-linux-x86_64.zip
+        - /tmp/sam-installation
+  tags: sam
   when: is_sam.rc == 1
   become: True
