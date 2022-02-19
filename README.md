@@ -1,12 +1,27 @@
 # setup-linux-desktop
-## install
 
-```
+## Install
+
+```shell
 $ git clone git@github.com:st1t/setup-linux-desktop.git
 $ cd setup-linux-desktop/
 $ vim inventory_hosts.yml
 $ vim my_pc.yml
+$ ansible-playbook -i inventory_hosts.yml my_pc.yml --list-tasks --list-hosts
 $ ansible-playbook -i inventory_hosts.yml my_pc.yml
+```
+
+## Specified task
+
+```shell
+$ ansible-playbook -i inventory_hosts.yml my_pc.yml --list-tasks --list-hosts --tags "pyenv"
+$ ansible-playbook -i inventory_hosts.yml my_pc.yml --tags "pyenv"
+```
+
+## Debug
+
+```shell
+$ ansible all -i inventory_hosts.yml -m debug -a 'var=hostvars[inventory_hostname]'
 ```
 
 ## Memo
