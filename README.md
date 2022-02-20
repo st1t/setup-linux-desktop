@@ -21,7 +21,10 @@ $ ansible-playbook -i inventory_hosts.yml my_pc.yml --tags "pyenv"
 ## Debug
 
 ```shell
+# print
 $ ansible all -i inventory_hosts.yml -m debug -a 'var=hostvars[inventory_hostname]'
+# print gather facts
+$ ansible all -i inventory_hosts.yml -m setup
 ```
 
 ## Memo
