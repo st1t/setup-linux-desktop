@@ -5,7 +5,7 @@ do
 done
 
 # Change ls color https://www.itmedia.co.jp/help/tips/linux/l0372.html
-export LS_COLORS='di=01;36'
+export LSCOLORS=gxfxcxdxbxegedabagacad
 
 # Other settings
-alias ls='ls --color'
+alias ls='ls -G'
