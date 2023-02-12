@@ -7,5 +7,5 @@
     - aws-sam-cli
     - rbenv
     - ruby
-    - pyenv
-    - envchain
+#    - pyenv
+#    - envchain
