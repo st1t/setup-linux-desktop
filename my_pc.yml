@@ -2,6 +2,7 @@
 - hosts: my_pc
   roles:
     - ubuntu-server
+    - 1password
     - go
     - docker
     - aws-sam-cli

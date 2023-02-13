@@ -1,0 +1,52 @@
+---
+# tasks file for 1Password CLI https://developer.1password.com/docs/cli/get-started/
+- name: RegistIsOp
+  shell: bash -lc "which op"
+  ignore_errors: True
+  register: is_op
+  tags: op
+
+- name: Install aws-op-cli
+  block:
+    - name: Add an Apt signing key to a specific keyring file
+      ansible.builtin.apt_key:
+        url: https://downloads.1password.com/linux/keys/1password.asc
+        keyring: /usr/share/keyrings/1password-archive-keyring.gpg
+
+    - name: Add repository for 1Password
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main"
+        state: present
+        filename: 1password
+
+    - name: Make directory for 1Password
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+      with_items:
+        - /etc/debsig/policies/{{ debsig_id }}
+        - /usr/share/debsig/keyrings/{{ debsig_id }}
+
+    - name: Download debsig policy for 1Password
+      ansible.builtin.get_url:
+        url: https://downloads.1password.com/linux/debian/debsig/1password.pol
+        dest: /etc/debsig/policies/{{ debsig_id }}/1password.pol
+
+    - name: Add degsig.gpg for 1Password
+      ansible.builtin.apt_key:
+        url: https://downloads.1password.com/linux/keys/1password.asc
+        keyring: /usr/share/debsig/keyrings/{{ debsig_id }}/debsig.gpg
+
+    - name: Add keyring for 1Password
+      ansible.builtin.apt_key:
+        url: https://downloads.1password.com/linux/keys/1password.asc
+        keyring: /usr/share/keyrings/1password-archive-keyring.gpg
+
+    - name: Install 1Password CLI
+      apt:
+        name: 1password-cli
+        update_cache: yes
+        state: present
+  tags: op
+  when: is_op.rc == 1
+  become: True
