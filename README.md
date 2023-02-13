@@ -8,7 +8,7 @@ $ cd setup-linux-desktop/
 $ vim inventory_hosts.yml
 $ vim my_pc.yml
 $ ansible-playbook -i inventory_hosts.yml my_pc.yml --list-tasks --list-hosts
-$ ansible-playbook -i inventory_hosts.yml my_pc.yml
+$ ansible-playbook -i inventory_hosts.yml my_pc.yml -K
 ```
 
 ## Specified task
