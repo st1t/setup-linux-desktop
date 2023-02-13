@@ -1,3 +1,4 @@
 ---
 # defaults file for 1Password
+# https://developer.1password.com/docs/cli/get-started/
 debsig_id: 'AC2D62742012EA22'
